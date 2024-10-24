@@ -33,3 +33,4 @@ menubar = MenuBar(payment,
                       [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ],
 					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
 					  [["10%", Zoom10],["20%", Zoom20],["30%", Zoom30],["40%", Zoom40],["50%", Zoom50]]
+                  ])
