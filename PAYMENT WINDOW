@@ -34,3 +34,37 @@ menubar = MenuBar(payment,
 					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
 					  [["10%", Zoom10],["20%", Zoom20],["30%", Zoom30],["40%", Zoom40],["50%", Zoom50]]
                   ])
+
+
+
+
+def Payment_Validation(): #validates the user input on the sign up window 
+
+	Card_Num = Card_numbox.value 
+	CardType = card_type.value
+	CardName = Card_namebox.value
+	Card_CSV = Card_CSVbox.value
+	Card_exp_date = Card_expire_date_box.value
+	pattern = r'^(0[1-9]|1[0-2])\/([0-9]{2})$'
+
+	if Card_Num == "": #checks if user has input anything in the first name field
+		info("Payment Error","Please input your Card Number") #error message
+	elif Card_Num.isnumeric()  == False: #checks if user has input anything but the alphabet for the name
+		info ("Payment Error", "Invalid Card Number")#error message
+	elif len(Card_Num) <0 or len(Card_Num) >16: #this makes sure the user only input 8 - 20 characters for password
+		info("Payment Error","Card Number must be 16 numbers long.")#error message
+	elif CardType == "":#checks if user has input anything in the last name field
+		info("Payment Error","Please input your card type.")#error message
+	elif CardName == "":
+		info("Payment Error", "Please input the card holders name")
+	elif CardName.isalpha() == False:
+		info("Payment Error" "Invalid Name")
+	elif Card_CSV == "":
+		info ("Payment Error", "Invalid CSV")
+	elif len(Card_CSV) <0 or len(Card_CSV) >3:
+		info ("Payment Error", "Invalid CSV")
+	elif re.match(pattern, Card_exp_date):
+		info("Payment Successful", "Payment Successful")#pop up message
+		Confirmation_run()
+	else:
+		info("Payment Error","Invalid Card Expirey date must be in format MM/YY")
