@@ -1,43 +1,3 @@
-payment = Window(app,title ="Payment", width= 800)
-payment.hide()
-box1 = Box(payment , layout="grid", border = True)
-box2 = Box(box1, layout="grid" ,grid = [0,1], border = True)
-box3 = Box(box1, layout ="grid" , grid = [0,3], border = True)
-box4 = Box(box1, layout ="grid" , grid = [0,4], border = True)
-box5 = Box(box1, layout ="grid" , grid = [0,5], border = True)
-box6 = Box(box1, layout = "grid", grid = [0,6], border = True)
-payment.bg = "#e5e5e5" # changes the background
-payment_message = Text(box1, text="Confirm and Pay!", grid = [1,0],align="left")#this tells the user what the window is for
-pic1 = Picture(box2, image="amex.png", width = 150, height = 75, grid=[0,1],align= "left")
-pic2 = Picture(box2, image="MasterCard.png", width = 150, height = 75, grid=[1,1],align= "left")
-pic3 = Picture(box2, image="Visa.png", width = 150, height = 75, grid=[2,1],align= "left")
-card_type = Combo(box1, options = ("VISA","AMEX","MASTERCARD"),width = 15, grid = [0,2], align="left")#this gives the user space to enter the name
-Card_name = Text(box3, text ="Enter Card Holders Name:", width =20, grid = [0,3], align="left")#this tells the user what to choose
-Card_namebox = TextBox(box3, text ="", width =16, grid = [1,3])#this shows the user what date they had chose
-Card_number = Text(box4, text ="Enter Card Number:", width =20, grid = [0,4], align="left")#this tells the user what to choose
-Card_numbox = TextBox(box4, text ="", width =16, grid = [1,4])#this shows the user what date they had chose
-Card_CSV = Text(box5, text = "Enter your CSV", width =20, grid = [0,5] , align= "left")
-Card_CSVbox = TextBox(box5, text ="", width =16, grid = [1,5])
-Card_expire_date = Text(box6, text = "Enter the cards expiry date" , width =20, grid = [0,6] , align= "left")
-Card_expire_date_box = TextBox(box6, text="", width =16, grid = [1,6])
-pay = PushButton(box1, text = "--💳PAY💳--", command = Confirmation_run ,grid = [1,7])
-btn_back= PushButton(box1, text="Back", command= back_dash, grid = [2,7],  width = 15)  #this allows the user to go back to the main menu
-picture = Picture(box1, image="Cheemzauto.png", width = 200, height = 100, grid=[1,8])
-
-
-
-
-menubar = MenuBar(payment,
-                  toplevel=["Apperance","Fonts","Size"],
-                  options=[
-                      [ ["Light Mode", Light_Mode], ["Dark Mode", Dark_Mode] ],
-					  [ ["Courier", Courier_font], ["Verdana", Verdana_font], ["Helvetica", Helvetica_font] ],
-					  [["10%", Zoom10],["20%", Zoom20],["30%", Zoom30],["40%", Zoom40],["50%", Zoom50]]
-                  ])
-
-
-
-
 def Payment_Validation(): #validates the user input on the sign up window 
 
 	Card_Num = Card_numbox.value 
@@ -58,7 +18,7 @@ def Payment_Validation(): #validates the user input on the sign up window
 	elif CardName == "":
 		info("Payment Error", "Please input the card holders name")
 	elif CardName.isalpha() == False:
-		info("Payment Error" "Invalid Name")
+		info("Payment Error", "Invalid Name")
 	elif Card_CSV == "":
 		info ("Payment Error", "Invalid CSV")
 	elif len(Card_CSV) <0 or len(Card_CSV) >3:
@@ -68,3 +28,33 @@ def Payment_Validation(): #validates the user input on the sign up window
 		Confirmation_run()
 	else:
 		info("Payment Error","Invalid Card Expirey date must be in format MM/YY")
+
+######################################################################################################################
+
+Premium= Window(app,title='Premium Signup', width=850, bg = "#CAC8B6") # names the window which has everything in
+Premium.hide() # hides the window until called to open
+
+box1 = Box(Premium , layout="grid", border = True)
+box2 = Box(box1, layout="grid" ,grid = [0,1], border = True)
+box3 = Box(box1, layout ="grid" , grid = [0,3], border = True)
+box4 = Box(box1, layout ="grid" , grid = [0,4], border = True)
+box5 = Box(box1, layout ="grid" , grid = [0,5], border = True)
+box6 = Box(box1, layout = "grid", grid = [0,6], border = True)
+payment_message = Text(box1, text="Confirm and Pay!", grid = [1,0],align="left")#this tells the user what the window is for
+pic1 = Picture(box2, image="amex.png", width = 150, height = 75, grid=[0,1],align= "left")
+pic2 = Picture(box2, image="MasterCard.png", width = 150, height = 75, grid=[1,1],align= "left")
+pic3 = Picture(box2, image="Visa.png", width = 150, height = 75, grid=[2,1],align= "left")
+card_type = Combo(box1, options = ("VISA","AMEX","MASTERCARD"),width = 15, grid = [0,2])#this gives the user space to enter the name
+Card_name = Text(box3, text ="Enter Card Holders Name:", width =20, grid = [0,3], align="left")#this tells the user what to choose
+Card_namebox = TextBox(box3, text ="", width =16, grid = [1,3])#this shows the user what date they had chose
+Card_number = Text(box4, text ="Enter Card Number:", width =20, grid = [0,4], align="left")#this tells the user what to choose
+Card_numbox = TextBox(box4, text ="", width =16, grid = [1,4])#this shows the user what date they had chose
+Card_CSV = Text(box5, text = "Enter your CSV", width =20, grid = [0,5] , align= "left")
+Card_CSVbox = TextBox(box5, text ="", width =16, grid = [1,5])
+Card_expire_date = Text(box6, text = "Enter the cards expiry date" , width =20, grid = [0,6] , align= "left")
+Card_expire_date_box = TextBox(box6, text="", width =16, grid = [1,6])
+pay = PushButton(box1, text = "--💳PAY💳--", command = Payment_Validation ,grid = [0,7])
+pay.bg = "#93ccad"
+btn_back= PushButton(box1, text="Back", command= Back_Menu, grid = [0,8],  width = 15)  #this allows the user to go back to the main menu
+btn_back.bg = "#93ccad"
+picture = Picture(box1, image="FitnessLogo.png", width = 200, height = 100, grid=[0,9])
